@@ -10,15 +10,14 @@
   apt_repository: repo='deb http://repos.mesosphere.io/{{ansible_distribution|lower}} {{ansible_distribution_release|lower}} main' 
                   state=present
 
-- name: Install Deb Packages
+- name: Install Mesosphere Meta Package
   sudo: yes
   apt: pkg={{item}} 
        state=present 
        update_cache=yes
   with_items:
-    - wget
-    - curl
-    - unzip
-    - python-setuptools
-    - python-dev
-    - mesos
+    - mesosphere
+
+- name: Update /etc/mesos/zk
+  sudo: yes
+  template: src=zk.j2 dest=/etc/mesos/zk owner=root group=root mode=0644

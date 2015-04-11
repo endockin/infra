@@ -1,4 +1,7 @@
-[mesos-servers]
-endockin1 ansible_ssh_user=vagrant ansible_ssh_private_key_file=../.vagrant/machines/endockin1/virtualbox/private_key
-endockin2 ansible_ssh_user=vagrant ansible_ssh_private_key_file=../.vagrant/machines/endockin2/virtualbox/private_key
-endockin3 ansible_ssh_user=vagrant ansible_ssh_private_key_file=../.vagrant/machines/endockin3/virtualbox/private_key
+[mesos-masters]
+endockin-master1 ansible_ssh_user=vagrant ansible_ssh_private_key_file=../.vagrant/machines/endockin-master1/virtualbox/private_key
+
+[mesos-slaves]
+endockin-slave1 ansible_ssh_user=vagrant ansible_ssh_private_key_file=../.vagrant/machines/endockin-slave1/virtualbox/private_key
+endockin-slave2 ansible_ssh_user=vagrant ansible_ssh_private_key_file=../.vagrant/machines/endockin-slave2/virtualbox/private_key
+endockin-slave3 ansible_ssh_user=vagrant ansible_ssh_private_key_file=../.vagrant/machines/endockin-slave3/virtualbox/private_key

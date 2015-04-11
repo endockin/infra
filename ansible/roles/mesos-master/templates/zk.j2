@@ -1,0 +1,5 @@
+{% set zks =  groups['mesos-masters'] %}
+{% set zk_port = 2188 %}
+{% set zk_prefix = 'zk://' %}
+{% set zk_postfix = '/mesos' %}
+{{zk_prefix}}{% for host in zks %}{% if loop.last %}{{ host ~ ":" ~ zk_port }}{% else %}{{ host ~ ":" ~ zk_port ~ ", " }}{% endif %}{% endfor %}{{zk_postfix}}

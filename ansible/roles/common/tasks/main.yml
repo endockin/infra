@@ -1,0 +1,12 @@
+---
+- name: Install Common Packages
+  sudo: yes
+  apt: pkg={{item}}
+       state=present
+       update_cache=yes
+  with_items:
+    - wget
+    - curl
+    - vim
+    - mc
+    - unzip

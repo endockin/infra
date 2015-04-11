@@ -7,10 +7,15 @@
   roles:
   - common
 
-- hosts: mesos-servers
+- hosts: mesos-masters
 
   roles:
-  - mesos
+  - mesos-master
+
+- hosts: mesos-slaves
+
+  roles:
+  - mesos-slave
 
 
 

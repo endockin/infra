@@ -18,9 +18,10 @@ fi
 echo "
 #ENDOCKIN
 
-192.168.199.101      endockin1
-192.168.199.102      endockin2
-192.168.199.103      endockin3
+192.168.199.101      endockin-master1
+192.168.199.111      endockin-slave1
+192.168.199.112      endockin-slave2
+192.168.199.113      endockin-slave3
 
 #/ENDOCKIN" >> /etc/hosts
 
