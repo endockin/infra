@@ -27,8 +27,18 @@
   sudo: yes
   template: src=mesos-master.override.j2 dest=/etc/init/mesos-master.override owner=root group=root mode=0644
   notify: restart mesos-slave
-  
+
 - name: Update /etc/mesos/zk
   sudo: yes
   template: src=zk.j2 dest=/etc/mesos/zk owner=root group=root mode=0644
+  notify: restart mesos-slave
+
+- name: Update containerizers
+  sudo: yes
+  template: src=containerizers.j2 dest=/etc/mesos-slave/containerizers owner=root group=root mode=0644
+  notify: restart mesos-slave
+
+- name: Update executor timeout
+  sudo: yes
+  template: src=executor_registration_timeout.j2 dest=/etc/mesos-slave/executor_registration_timeout owner=root group=root mode=0644
   notify: restart mesos-slave
