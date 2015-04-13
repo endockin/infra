@@ -1,0 +1,56 @@
+---
+- name: Add apt-key
+  sudo: yes
+  apt_key: id=E56151BF 
+           keyserver=keyserver.ubuntu.com
+           state=present
+
+- name: Add Mesosphere Repo
+  sudo: yes
+  apt_repository: repo='deb http://repos.mesosphere.io/{{ansible_distribution|lower}} {{ansible_distribution_release|lower}} main' 
+                  state=present
+
+- name: Install Mesosphere Meta Package
+  sudo: yes
+  apt: pkg={{item}} 
+       state=present 
+       update_cache=yes
+  with_items:
+    - mesosphere
+
+- name: Update /etc/mesos/zk
+  sudo: yes
+  template: src=zk_mesos.j2 dest=/etc/mesos/zk owner=root group=root mode=0644
+  notify:
+  - restart zookeeper
+  - restart mesos-master
+
+- name: Update zookeeper quroum
+  sudo: yes
+  template: src=quorum.j2 dest=/etc/mesos-master/quorum owner=root group=root mode=0644
+  notify:
+  - restart zookeeper
+  - restart mesos-master
+
+- name: Update mesos-master ip
+  sudo: yes
+  template: src=ip.j2 dest=/etc/mesos-master/ip owner=root group=root mode=0644
+  notify:
+  - restart mesos-master
+
+- name: Update mesos-master hostname
+  sudo: yes
+  template: src=hostname.j2 dest=/etc/mesos-master/hostname owner=root group=root mode=0644
+  notify:
+  - restart mesos-master
+
+- name: Update mesos-master cluster name
+  sudo: yes
+  template: src=cluster.j2 dest=/etc/mesos-master/cluster owner=root group=root mode=0644
+  notify:
+  - restart mesos-master
+
+- name: Disable Mesos-Slave
+  sudo: yes
+  template: src=mesos-slave.override.j2 dest=/etc/init/mesos-slave.override owner=root group=root mode=0644
+  notify: disable mesos-slave

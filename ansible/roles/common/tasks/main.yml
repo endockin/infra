@@ -1,0 +1,16 @@
+---
+- name: Install Common Packages
+  sudo: yes
+  apt: pkg={{item}}
+       state=present
+       update_cache=yes
+  with_items:
+    - wget
+    - curl
+    - vim
+    - mc
+    - unzip
+
+- name: Update hosts file
+  sudo: yes
+  template: src=hosts.j2 dest=/etc/hosts owner=root group=root mode=0644

@@ -21,9 +21,10 @@ Vagrant.configure(2) do |config|
 
   # Virtual Machine Inventory & Host-Only IP Addresses
   servers = {
-    :endockin1 => '192.168.199.101',
-    :endockin2 => '192.168.199.102',
-    :endockin3 => '192.168.199.103'
+    :'endockin-master1' => '192.168.199.101',
+    :'endockin-slave1' => '192.168.199.111',
+    :'endockin-slave2' => '192.168.199.112',
+    :'endockin-slave3' => '192.168.199.113'
   }
 
   # Individual Server Configuration
