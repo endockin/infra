@@ -1,3 +1,3 @@
 ---
-mesos_containerizers: "docker, mesos"
+mesos_containerizers: "docker,mesos"
 mesos_executor_timeout: "5mins"
