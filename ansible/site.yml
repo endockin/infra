@@ -11,6 +11,8 @@
 
   roles:
   - mesos-master
+  vars_files:
+  - roles/mesos-master/vars/vars.yml
 
 - hosts: mesos-slaves
 

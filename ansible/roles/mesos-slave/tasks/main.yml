@@ -17,3 +17,18 @@
        update_cache=yes
   with_items:
     - mesos
+    - docker.io
+
+- name: Disable Zookeeper
+  sudo: yes
+  template: src=zookeeper.override.j2 dest=/etc/init/zookeeper.override owner=root group=root mode=0644
+
+- name: Disable Mesos-Master
+  sudo: yes
+  template: src=mesos-master.override.j2 dest=/etc/init/mesos-master.override owner=root group=root mode=0644
+  notify: restart mesos-slave
+  
+- name: Update /etc/mesos/zk
+  sudo: yes
+  template: src=zk.j2 dest=/etc/mesos/zk owner=root group=root mode=0644
+  notify: restart mesos-slave

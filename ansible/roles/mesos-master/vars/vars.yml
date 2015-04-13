@@ -1,0 +1,5 @@
+---
+mesos_cluster_name: "endockin"
+mesos_quorum: "1"
+mesos_containerizers: "docker, mesos"
+mesos_executor_timeout: "5mins"

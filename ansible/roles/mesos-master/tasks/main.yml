@@ -21,3 +21,31 @@
 - name: Update /etc/mesos/zk
   sudo: yes
   template: src=zk.j2 dest=/etc/mesos/zk owner=root group=root mode=0644
+  notify:
+  - restart zookeeper
+  - restart mesos-master
+
+- name: Update zookeeper quroum
+  sudo: yes
+  template: src=quorum.j2 dest=/etc/mesos-master/quorum owner=root group=root mode=0644
+  notify:
+  - restart zookeeper
+  - restart mesos-master
+
+- name: Update mesos-master ip
+  sudo: yes
+  template: src=ip.j2 dest=/etc/mesos-master/ip owner=root group=root mode=0644
+  notify:
+  - restart mesos-master
+
+- name: Update mesos-master hostname
+  sudo: yes
+  template: src=hostname.j2 dest=/etc/mesos-master/hostname owner=root group=root mode=0644
+  notify:
+  - restart mesos-master
+
+- name: Update mesos-master cluster name
+  sudo: yes
+  template: src=cluster.j2 dest=/etc/mesos-master/cluster owner=root group=root mode=0644
+  notify:
+  - restart mesos-master

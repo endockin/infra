@@ -1,0 +1,8 @@
+---
+- name: restart zookeeper
+  sudo: yes
+  service: name=zookeeper state=restarted
+
+- name: restart mesos-master
+  sudo: yes
+  service: name=mesos-master state=restarted

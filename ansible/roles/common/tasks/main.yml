@@ -10,3 +10,7 @@
     - vim
     - mc
     - unzip
+
+- name: Update hosts file
+  sudo: yes
+  template: src=hosts.j2 dest=/etc/hosts owner=root group=root mode=0644
